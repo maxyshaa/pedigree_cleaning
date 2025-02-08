@@ -1,4 +1,5 @@
 import os
+import sys
 import pandas as pd
 from preprocessing.load_data import read_pedigree_sheets, get_pedigree_csv, read_fam
 from preprocessing.filter_geno import filter_by_fam, filter_by_chip, update_idmatch
@@ -123,6 +124,14 @@ def main() -> None:
     pedid_match_nodup = update_idmatch(pedid_match=pedid_match_chip_filtered, new_geno=geno_id_nodup)
     print("----------pedid_match has updated: no extra equinomeID per horse----------")
     save_file(pedid_match_nodup, "results/", "updates_pedid.csv")
+
+    ### save intermediate results
+    #/results/updates_pedid.csv
+    geno_id_nodup.to_csv("intermediate/geno_id.csv", index=False)
+    pedid_match_chip_filtered.to_csv("intermediate/pedid_match.csv", index=False)
+    ped_cleaned.to_csv("intermediate/ped_df.csv", index=False)
+    ped_addit_chip_filtered.to_csv("intermediate/ped_addid.csv", index=False)
+    sys.exit("Stopping script at Step 1")
 
     # Step 6: Modifying columns and prepare pedigres
     ped_1stmerged = merge_1stdataframes(ped_df=ped_cleaned, 
