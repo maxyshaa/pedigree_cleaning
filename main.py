@@ -130,7 +130,7 @@ def main() -> None:
     geno_id_nodup.to_csv("intermediate/geno_id.csv", index=False)
     pedid_match_chip_filtered.to_csv("intermediate/pedid_match.csv", index=False)
     ped_cleaned.to_csv("intermediate/ped_df.csv", index=False)
-    ped_addit_chip_filtered.to_csv("intermediate/ped_addid.csv", index=False)
+    pedid_match_nodup.to_csv("intermediate/ped_addid.csv", index=False)
     sys.exit("Stopping script at Step 1")
 
     # Step 6: Modifying columns and prepare pedigres
